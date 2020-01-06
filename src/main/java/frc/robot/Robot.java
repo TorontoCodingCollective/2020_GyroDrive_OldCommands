@@ -14,6 +14,7 @@ import frc.robot.oi.AutoSelector;
 import frc.robot.oi.OI;
 import frc.robot.subsystems.CameraSubsystem;
 import frc.robot.subsystems.CanDriveSubsystem;
+import frc.robot.subsystems.ColorSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.PowerSubsystem;
 
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
     public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
     public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();
     public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
+    public static final ColorSubsystem      colorSubsystem      = new ColorSubsystem();
 
     public static OI                        oi;
 
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
         subsystemLs.add(pneumaticsSubsystem);
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
+        subsystemLs.add(colorSubsystem);
     }
 
     /**
