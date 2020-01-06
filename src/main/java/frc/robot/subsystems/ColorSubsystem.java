@@ -23,10 +23,10 @@ public class ColorSubsystem extends TSubsystem {
 
     private final ColorMatch colorMatcher = new ColorMatch();
 
-    private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
-    private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
-    private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
-    private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+    private final Color blueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
+    private final Color greenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
+    private final Color redTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
+    private final Color yellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
     public ColorSubsystem() {
 
@@ -34,10 +34,10 @@ public class ColorSubsystem extends TSubsystem {
 
     @Override
     public void init() {
-        colorMatcher.addColorMatch(kBlueTarget);
-        colorMatcher.addColorMatch(kGreenTarget);
-        colorMatcher.addColorMatch(kRedTarget);
-        colorMatcher.addColorMatch(kYellowTarget);
+        colorMatcher.addColorMatch(blueTarget);
+        colorMatcher.addColorMatch(greenTarget);
+        colorMatcher.addColorMatch(redTarget);
+        colorMatcher.addColorMatch(yellowTarget);
     }
 
     // Periodically update the dashboard and any PIDs or sensors
@@ -48,13 +48,13 @@ public class ColorSubsystem extends TSubsystem {
 
         String colorString = "Unknown";
 
-        if (match.color == kBlueTarget) {
+        if (match.color == blueTarget) {
             colorString = "Blue";
-        } else if (match.color == kRedTarget) {
+        } else if (match.color == redTarget) {
             colorString = "Red";
-        } else if (match.color == kGreenTarget) {
+        } else if (match.color == greenTarget) {
             colorString = "Green";
-        } else if (match.color == kYellowTarget) {
+        } else if (match.color == yellowTarget) {
             colorString = "Yellow";
         }
 
