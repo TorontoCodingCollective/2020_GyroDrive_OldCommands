@@ -1,6 +1,6 @@
 package com.torontocodingcollective.pid;
 
-import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.controller.PIDController;
 
 /**
  * Class implements a Proportional (PID) Control Loop for motor speed control.
@@ -15,15 +15,16 @@ public class TSpeedPID extends PIDController {
 
     private double output;
     private double totalError;
+    private boolean isEnabled;
 
     public TSpeedPID(double kP) {
-        super(kP, 0.0d, 0.0d, 1.0d, new NullPIDSource(), new NullPIDOutput());
-        this.totalError = 0;
+        this(kP, 0.0d);
     }
 
     public TSpeedPID(double kP, double kI) {
-        super(kP, kI, 0.0d, 1.0d, new NullPIDSource(), new NullPIDOutput());
+        super(kP, kI, 0.0d, 1.0d);
         this.totalError = 0;
+        this.isEnabled = false;
     }
 
     /**
@@ -34,24 +35,25 @@ public class TSpeedPID extends PIDController {
      * periodic loops is sufficient.
      * <p>
      * NOTE: If the PID is disabled, this routine returns 0.
-     * 
+     *
      * @param normalizedRate
      *            the encoder rate scaled for use as used as feedback for this PID
      *            (should be set to rawRate/maxEncodeSpeed)
      * @return the calculated result. This result can also be retrieved with
      *         subsequent calls to {@link #get()}.
      */
+    @Override
     public double calculate(double normalizedRate) {
 
         // If the PID is not enabled, this routine does nothing.
-        if (!this.isEnabled()) {
+        if (!this.isEnabled) {
             return 0;
         }
 
         // Don't use PID to go stop - controllers should be set to brake instead
         if (Math.abs(super.getSetpoint()) < 0.03) {
-        	totalError = 0; 
-        	output = 0;
+            totalError = 0;
+            output = 0;
             return 0;
         }
 
@@ -100,7 +102,7 @@ public class TSpeedPID extends PIDController {
 
         if (kI != 0) {
 
-            // If the setpoint is zero, then disable the 
+            // If the setpoint is zero, then disable the
             // integral PID.
             if (super.getSetpoint() == 0) {
                 totalError = 0;
@@ -131,11 +133,24 @@ public class TSpeedPID extends PIDController {
         return output;
     }
 
-    @Override
     public void disable() {
-        super.disable();
+        isEnabled = false;
         totalError = 0;
         output = 0;
+    }
+
+    public void enable() {
+        isEnabled = true;
+        totalError = 0;
+        output = 0;
+    }
+
+    public double get() {
+        return output;
+    }
+
+    public boolean isEnabled() {
+        return this.isEnabled;
     }
 
     /**
@@ -151,21 +166,16 @@ public class TSpeedPID extends PIDController {
         if (setpoint > 1.0) {
             System.out.println(
                     "Cannot set TSpeedPID setpoint > 1.0.  Attempted to set value to " + setpoint
-                            + ". Overriding to 1.0");
+                    + ". Overriding to 1.0");
             setpoint = 1.0;
         }
 
         if (setpoint < -1.0) {
             System.out.println(
                     "Cannot set TSpeedPID setpoint < -1.0.  Attempted to set value to " + setpoint
-                            + ". Overriding to -1.0");
+                    + ". Overriding to -1.0");
             setpoint = -1.0;
         }
         super.setSetpoint(setpoint);
-    }
-
-    @Override
-    public double get() {
-        return output;
     }
 }

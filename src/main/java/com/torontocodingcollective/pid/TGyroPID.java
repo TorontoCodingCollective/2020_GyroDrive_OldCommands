@@ -120,8 +120,7 @@ public class TGyroPID extends PIDController {
 
 
     /***
-     * Is this PID enabled
-     * @return {@code true} if enabled, {@code false} otherwise
+     * Enable this pid
      */
     public void enable() {
         this.isEnabled = true;

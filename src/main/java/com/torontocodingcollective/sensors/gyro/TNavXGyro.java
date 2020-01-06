@@ -24,9 +24,6 @@ public class TNavXGyro extends TGyro {
 
     @Override
     public void close() throws Exception {
-        if (this.navXGyro != null) {
-            this.navXGyro.close();
-        }
     }
 
     @Override
@@ -36,6 +33,8 @@ public class TNavXGyro extends TGyro {
 
     @Override
     public double getPitch() {
+        // Not sure why pitch and roll are reversed on the NavX.
+        // FIXME: Test the pitch every year.
         return navXGyro.getRoll();
     }
 
