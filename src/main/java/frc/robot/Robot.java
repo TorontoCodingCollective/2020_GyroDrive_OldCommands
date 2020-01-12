@@ -27,17 +27,17 @@ import frc.robot.subsystems.PowerSubsystem;
  */
 public class Robot extends TimedRobot {
 
-    public static final List<TSubsystem>    subsystemLs         = new ArrayList<TSubsystem>();
+    public static final List<TSubsystem>        subsystemLs             = new ArrayList<TSubsystem>();
 
-    public static final CanDriveSubsystem   driveSubsystem      = new CanDriveSubsystem();
-    public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
-    public static final PowerSubsystem      powerSubsystem      = new PowerSubsystem();
-    public static final CameraSubsystem     cameraSubsystem     = new CameraSubsystem();
-    public static final ControlPanelSubsystem      colorSubsystem      = new ControlPanelSubsystem();
+    public static final CanDriveSubsystem       driveSubsystem          = new CanDriveSubsystem();
+    public static final PneumaticsSubsystem     pneumaticsSubsystem     = new PneumaticsSubsystem();
+    public static final PowerSubsystem          powerSubsystem          = new PowerSubsystem();
+    public static final CameraSubsystem         cameraSubsystem         = new CameraSubsystem();
+    public static final ControlPanelSubsystem   controlPanelSubsystem   = new ControlPanelSubsystem();
 
-    public static OI                        oi;
+    public static OI                            oi;
 
-    private Command                         autoCommand;
+    private Command                             autoCommand;
 
     // Add all of the subsystems to the subsystem list
     static {
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
         subsystemLs.add(pneumaticsSubsystem);
         subsystemLs.add(powerSubsystem);
         subsystemLs.add(cameraSubsystem);
-        subsystemLs.add(colorSubsystem);
+        subsystemLs.add(controlPanelSubsystem);
     }
 
     /**
