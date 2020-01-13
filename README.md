@@ -7,5 +7,4 @@ Clone this repository to start your 2020 season based on the Gyro Drive framewor
 <p>
 Best of luck to all teams!
 <p>
-P.S. A framework based on the new Command paradigm will not be released for a few weeks.
-
+P.S. A framework based on the new Command paradigm is not scheduled for this season.
